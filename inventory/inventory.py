@@ -4,23 +4,24 @@
 
 import argparse
 import requests 
+import urllib
 import os
 import re
 from time import time
 import xmlrpclib
 
 import json
+import netifaces
+import getmac
 
-from ansible.module_utils.six import iteritems
-from ansible.module_utils.six.moves import configparser as ConfigParser
+gws = netifaces.gateways()
+defiface = gws['default'][netifaces.AF_INET][1]
 
-from uuid import getnode as get_mac
-mac = get_mac()
-print mac
+mymac = getmac.get_mac_address(interface=defiface)
 
+url = "https://raw.githubusercontent.com/BruceBushby/provision/master/cmdb/" + mymac
+print url
+r = requests.get(url)
 
-
-#r = requests.get(‘https://github.com/BruceBushby/provision/blob/master/cmdb/e0%253A69%253A95%253Ac2%253Ab0%253A1f’)
-r = requests.get(‘https://github.com/BruceBushby/provision/blob/master/cmdb/e0%253A69%253A95%253Ac2%253Ab0%253A1f’)
-print r
+print r.text
 
