@@ -24,5 +24,3 @@ url = "https://raw.githubusercontent.com/BruceBushby/provision/master/cmdb/" + m
 r = requests.get(url)
 print r.text
 
-
-
