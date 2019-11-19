@@ -57,11 +57,38 @@ class CMDBInventory(object):
         print(data_to_print)
 
     def _connect(self):
+
+
+    # - 
         if not self.conn:
-            self.conn = xmlrpclib.Server(self.cmdb_host, allow_none=True)
+
+            import json
+            import netifaces
+            import getmac
+            import requests 
+            
+            gws = netifaces.gateways()
+            defiface = gws['default'][netifaces.AF_INET][1]
+            
+            mymac = getmac.get_mac_address(interface=defiface)
+            
+            url = "https://raw.githubusercontent.com/BruceBushby/provision/master/cmdb/" + mymac
+            #r = requests.get(url)
+            #print r.text
+
+
+            #self.conn = xmlrpclib.Server(self.cmdb_host, allow_none=True)
+            self.conn = requests.get(url).text 
             self.token = None
             if self.cmdb_username is not None:
                 self.token = self.conn.login(self.cmdb_username, self.cmdb_password)
+
+
+
+
+
+
+
 
     def is_cache_valid(self):
         """ Determines if the cache files have expired, or if it is still valid """
@@ -82,7 +109,7 @@ class CMDBInventory(object):
             return
 
         config = ConfigParser.SafeConfigParser()
-        config.read(os.path.dirname(os.path.realpath(__file__)) + '/inv.ini')
+        config.read(os.path.dirname(os.path.realpath(__file__)) + '/cmdb.ini')
 
         self.cmdb_host = config.get('cmdb', 'host')
         self.cmdb_username = None
@@ -139,13 +166,24 @@ class CMDBInventory(object):
     def update_cache(self):
         """ Make calls to cmdb and save the output in a cache """
 
+
+
         self._connect()
         self.groups = dict()
         self.hosts = dict()
-        if self.token is not None:
-            data = self.conn.get_systems(self.token)
-        else:
-            data = self.conn.get_systems()
+
+
+
+
+#        if self.token is not None:
+#            data = self.conn.get_systems(self.token)
+#        else:
+#            data = self.conn.get_systems()
+
+
+
+
+
 
         for host in data:
             # Get the FQDN for the host and add it to the right groups

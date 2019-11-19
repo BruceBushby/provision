@@ -1,5 +1,13 @@
 
 {
+    "_meta": {
+        "hostvars": {
+            "localhost": {
+                "hostname_var": "nxdc01.nxis.io"
+            }
+        }
+    }
+
     "group": {
         "hosts": [
             "localhost"
@@ -10,11 +18,5 @@
             "example_variable": "value"
         }
     },
-    "_meta": {
-        "hostvars": {
-            "localhost": {
-                "hostname_var": "nxdc01.nxis.io"
-            }
-        }
-    }
+    "data": {}
 }
