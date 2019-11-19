@@ -159,6 +159,7 @@ class CMDBInventory(object):
         print data
 
         for host in data:
+            print host
             # Get the FQDN for the host and add it to the right groups
             dns_name = host['hostname']  # None
             ksmeta = None

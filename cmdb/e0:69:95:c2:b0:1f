@@ -19,9 +19,13 @@
         }
     },
     "data": {
-        "nxis.io": {
-            "my_var_tag": "my-value"
+        "hosts": [
+            "localhost"
+        ],
+        "vars": {
+            "ansible_ssh_user": "root",
+            "ansible_ssh_private_key_file": "~/.ssh/rootkey",
+            "example_variable": "value"
         }
-       
     }
 }
