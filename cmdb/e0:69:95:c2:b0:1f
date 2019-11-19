@@ -2,9 +2,11 @@
     "_meta": {
         "hostvars": {
             "moocow.example.com": {
+                "hostname" : "moocow.example.com",
                 "asdf" : 1234
             },
             "llama.example.com": {
+                "hostname" : "moocow.example.com",
                 "asdf": 5678
             }
         }

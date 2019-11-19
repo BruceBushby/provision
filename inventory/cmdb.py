@@ -156,17 +156,13 @@ class CMDBInventory(object):
         data = r.text
 
 
-        print data
+#        print data
 
         dict_object = json.loads(data)
         print dict_object
+        print dict_object['_meta']['hostvars']
 
-        for host in data['data']:
-            print host
-            print host
-            print host
-            print host
-            print host
+        for host in dict_object['_meta']['hostvars']: 
             # Get the FQDN for the host and add it to the right groups
             dns_name = host['hostname']  # None
             ksmeta = None
