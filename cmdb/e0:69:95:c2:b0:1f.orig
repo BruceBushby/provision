@@ -1,0 +1,31 @@
+
+{
+    "_meta": {
+        "hostvars": {
+            "localhost": {
+                "hostname_var": "nxdc01.nxis.io"
+            }
+        }
+    }
+
+    "group": {
+        "hosts": [
+            "localhost"
+        ],
+        "vars": {
+            "ansible_ssh_user": "root",
+            "ansible_ssh_private_key_file": "~/.ssh/rootkey",
+            "example_variable": "value"
+        }
+    },
+    "data": {
+        "hosts": [
+            "localhost"
+        ],
+        "vars": {
+            "ansible_ssh_user": "root",
+            "ansible_ssh_private_key_file": "~/.ssh/rootkey",
+            "example_variable": "value"
+        }
+    }
+}
