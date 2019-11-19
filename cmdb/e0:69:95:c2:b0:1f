@@ -1,8 +1,4 @@
 {
-
-    # results of inventory script as above go here
-    # ...
-
     "_meta": {
         "hostvars": {
             "moocow.example.com": {
