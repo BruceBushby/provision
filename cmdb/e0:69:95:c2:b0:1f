@@ -18,5 +18,9 @@
             "example_variable": "value"
         }
     },
-    "data": {}
+    "data": {
+        "hosts": [
+            "localhost"
+        ],
+    }
 }

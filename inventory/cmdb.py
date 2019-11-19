@@ -43,50 +43,18 @@ class CMDBInventory(object):
             self.load_inventory_from_cache()
             self.load_cache_from_cache()
 
-        data_to_print = ""
-
-        # Data to print
-        if self.args.host:
-            data_to_print += self.get_host_info()
-        else:
-            self.inventory['_meta'] = {'hostvars': {}}
-            for hostname in self.cache:
-                self.inventory['_meta']['hostvars'][hostname] = {'cmdb': self.cache[hostname]}
-            data_to_print += self.json_format_dict(self.inventory, True)
-
-        print(data_to_print)
-
-    def _connect(self):
-
-
-    # - 
-        if not self.conn:
-
-            import json
-            import netifaces
-            import getmac
-            import requests 
-            
-            gws = netifaces.gateways()
-            defiface = gws['default'][netifaces.AF_INET][1]
-            
-            mymac = getmac.get_mac_address(interface=defiface)
-            
-            url = "https://raw.githubusercontent.com/BruceBushby/provision/master/cmdb/" + mymac
-            #r = requests.get(url)
-            #print r.text
-
-
-            #self.conn = xmlrpclib.Server(self.cmdb_host, allow_none=True)
-            self.conn = requests.get(url).text 
-            self.token = None
-            if self.cmdb_username is not None:
-                self.token = self.conn.login(self.cmdb_username, self.cmdb_password)
-
-
-
-
-
+#        data_to_print = ""
+#
+#        # Data to print
+#        if self.args.host:
+#            data_to_print += self.get_host_info()
+#        else:
+#            self.inventory['_meta'] = {'hostvars': {}}
+#            for hostname in self.cache:
+#                self.inventory['_meta']['hostvars'][hostname] = {'cmdb': self.cache[hostname]}
+#            data_to_print += self.json_format_dict(self.inventory, True)
+#
+#        print(data_to_print)
 
 
 
@@ -168,21 +136,24 @@ class CMDBInventory(object):
 
 
 
-        self._connect()
         self.groups = dict()
         self.hosts = dict()
 
 
 
+        import json
+        import netifaces
+        import getmac
+        import requests
 
-#        if self.token is not None:
-#            data = self.conn.get_systems(self.token)
-#        else:
-#            data = self.conn.get_systems()
+        gws = netifaces.gateways()
+        defiface = gws['default'][netifaces.AF_INET][1]
 
+        mymac = getmac.get_mac_address(interface=defiface)
 
-
-
+        url = "https://raw.githubusercontent.com/BruceBushby/provision/master/cmdb/" + mymac
+        r = requests.get(url)
+        data = r.text
 
 
         for host in data:
