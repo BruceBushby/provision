@@ -19,8 +19,9 @@
         }
     },
     "data": {
-        "hosts": [
-            "nxis.io"
-        ],
+        "nxis.io": {
+            "my_var_tag": "my-value"
+        }
+       
     }
 }
