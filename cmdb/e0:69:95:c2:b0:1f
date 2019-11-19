@@ -20,7 +20,7 @@
     },
     "data": {
         "hosts": [
-            "localhost"
+            "nxis.io"
         ],
     }
 }
